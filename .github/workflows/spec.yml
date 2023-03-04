@@ -3,11 +3,11 @@ name: Spec
 on:
   push:
     branches:
-      - "master"
+      - 'master'
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
     branches:
-      - "master"
+      - 'master'
 
 # Cancel any in-progress CI runs for a PR if it is updated
 concurrency:
@@ -46,9 +46,9 @@ jobs:
 
       - name: Compile parsers
         run: |
-          nvim --headless -c "TSInstallSync ruby python lua javascript" -c "q"
+          nvim --headless -c "TSInstallSync ruby python lua javascript yaml" -c "q"
       - name: Tests
         env:
-          ci: "1"
+          ci: '1'
         run: |
           nvim --headless --noplugin -u spec/init.lua -c "PlenaryBustedDirectory ./spec/ { minimal_init = './spec/init.lua' }"
